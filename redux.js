@@ -3,8 +3,17 @@ function reducer(state, action) {
   if (state === undefined) {
     return { color: "yellow" };
   }
+  console.log(state, action);
+  var newState;
+  if (action.type === "CHANGE_COLOR") {
+    newState = Object.assign({}, state, { color: action.color });
+  }
+  return newState;
 }
 
-var store = Redux.createStore(reducer);
+var store = Redux.createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 console.log(store.getState());

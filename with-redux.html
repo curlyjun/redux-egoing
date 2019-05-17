@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.1/redux.js" > -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.1/redux.js" >
     </script>
     <title>Document</title>
 </head>
@@ -13,6 +13,8 @@
                 }
             </style>
                 <div id='red'></div> 
+                <div id='green'></div> 
+                <div id='blue'></div> 
             <script src="redux.js"></script>
            <script>
                function red(){
@@ -21,14 +23,39 @@
                         <div class="container" id="component_red" style="background-color: ${state.color}">
                             <h1>red</h1>
                             <input type="button" value="fire" onclick="
-                            document.querySelector('#component_red').style.backgroundColor ='red';
-                            document.querySelector('#component_green').style.backgroundColor ='red';
-                            document.querySelector('#component_blue').style.backgroundColor ='red';
+                                store.dispatch({type: 'CHANGE_COLOR', color: 'red'});
                             ">
                         </div>
                     `;
                }
+               store.subscribe(red);
                red();
+               function green(){
+                   var state = store.getState();
+                    document.querySelector('#green').innerHTML = `
+                        <div class="container" id="component_green" style="background-color: ${state.color}">
+                            <h1>green</h1>
+                            <input type="button" value="fire" onclick="
+                                store.dispatch({type: 'CHANGE_COLOR', color: 'green'});
+                            ">
+                        </div>
+                    `;
+               }
+               store.subscribe(green);
+               green();
+               function blue(){
+                   var state = store.getState();
+                    document.querySelector('#blue').innerHTML = `
+                        <div class="container" id="component_blue" style="background-color: ${state.color}">
+                            <h1>blue</h1>
+                            <input type="button" value="fire" onclick="
+                                store.dispatch({type: 'CHANGE_COLOR', color: 'blue'});
+                            ">
+                        </div>
+                    `;
+               }
+               store.subscribe(blue);
+               blue();
            </script>
 </body>
 </html>
